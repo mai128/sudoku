@@ -1,9 +1,26 @@
-#ifndef SUDOKU_H_
-#define SUDOKU_H_
+#ifndef SUDOKU_H
+#define SUDOKU_H
 
-class sudoku{
+class Sudoku
+{
+
 public:
-	sudoku();
+    Sudoku();
+
+    void initSudoku();
+    void initArray(int *array);
+    int completed();
+    void getRow (int index,int array[] );
+    void getColumn (int index,int array[]);
+    void getBlock (int ixRow,int ixColumn ,int array[] );
+    int checkArray(int array[]);
+    int checkSudoku();
+    void showSudoku();
+    void setValue(int row, int column, int value);
+
+private:
+    int mMatrix[9][9];
+
 };
 
-#endif /* SUDOKU_H_ */
+#endif // SUDOKU_H
