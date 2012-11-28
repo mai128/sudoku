@@ -5,6 +5,9 @@
  *      Author: periklis
  */
 
+void doSomething()
+{
 
+}
 
 
