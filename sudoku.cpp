@@ -1,21 +1,5 @@
-/*
- * sudoku.cpp
- *
- *  Created on: 28 ��� 2012
- *      Author: periklis
- */
+#include "sudoku.h"
 
-<<<<<<< HEAD
-void doSomething()
-{
-=======
-//test
->>>>>>> branch 'master' of https://github.com/mai128/sudoku.git
-
-	//
-
-
-
-}
+sudoku::sudoku();
 
 
