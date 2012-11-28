@@ -1,14 +1,20 @@
 /*
  * sudoku.cpp
  *
- *  Created on: 28 Íïå 2012
+ *  Created on: 28 ï¿½ï¿½ï¿½ 2012
  *      Author: periklis
  */
 
+<<<<<<< HEAD
 void doSomething()
 {
+=======
+//test
+>>>>>>> branch 'master' of https://github.com/mai128/sudoku.git
 
 	//
+
+
 
 }
 
