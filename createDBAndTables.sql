@@ -21,7 +21,7 @@ create table plays(
 	primary key (AA),
 	foreign key (ID) references categoryOfPlays(ID)
 );
-
+ 
 use sudoku;
 
 create table records(
