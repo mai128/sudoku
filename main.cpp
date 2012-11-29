@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "sudoku.h"
+#include "stdlib.h"
 
 int main(int argc, char * argv[])
 {
@@ -13,10 +14,10 @@ int main(int argc, char * argv[])
    S.initSudoku();
 
    while(value>=0){
-        system("cls");
+      	system("clear");
 
         S.showSudoku();
-        if(checkSudoku()!=0){
+        if(S.checkSudoku()!=0){
            printf("\nCheck for error\n");
         }else{
            printf("\n\n");

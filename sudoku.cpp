@@ -1,5 +1,3 @@
-
-
 #include "sudoku.h"
 #include <stdio.h>
 //using namespace std;
@@ -130,7 +128,7 @@ int Sudoku::checkSudoku()
     return ret;
 }
 
-/*
+
 void Sudoku::showSudoku()
 {
     int i;
@@ -146,7 +144,7 @@ void Sudoku::showSudoku()
         printf("\n");
     }
 }
-*/
+
 void Sudoku::setValue(int row, int column, int value)
 {
     mMatrix[row][column]=value;
