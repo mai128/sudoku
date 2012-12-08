@@ -15,7 +15,6 @@ public:
     void getBlock (int ixRow,int ixColumn ,int array[] );
     int checkArray(int array[]);
     int checkSudoku();
-    void showSudoku();
     void setValue(int row, int column, int value);
 
 private:

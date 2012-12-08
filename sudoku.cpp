@@ -1,10 +1,10 @@
+
 #include "sudoku.h"
-#include <stdio.h>
-//using namespace std;
 
 
 Sudoku::Sudoku()
 {
+    initSudoku();
 }
 
 
@@ -81,7 +81,6 @@ int Sudoku::checkArray(int array[])
     int i;
     int j;
     int ret=0;
-    int x;
 
     for(i=0;i<9-1;i++){
         if (array[i] ==0) continue;
@@ -128,25 +127,7 @@ int Sudoku::checkSudoku()
     return ret;
 }
 
-
-void Sudoku::showSudoku()
-{
-    int i;
-    int j;
-    for(i=0;i<9;i++){
-        for(j=0;j<9;j++){
-            if(mMatrix[i][j]==0){
-             printf("___|");
-            }else{
-                printf("_%d_|",mMatrix[i][j]);
-            }
-        }
-        printf("\n");
-    }
-}
-
 void Sudoku::setValue(int row, int column, int value)
 {
     mMatrix[row][column]=value;
 }
-
