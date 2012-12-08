@@ -2,7 +2,7 @@ use sudoku;
 
 insert into categoryOfPlays values (' ',1),(' ',1),(' ',2),(' ',2),(' ',3),(' ',3),(' ',1),(' ',1),(' ',2),(' ',2),(' ',2),(' ',3),(' ',3),(' ',1),(' ',3),(' ',1),(' ',2),(' ',3),(' ',4),(' ',4),(' ',5),(' ',6);
 
-insert into indexOfPlays values (' ',1,'easy'), (' ',2,'medium'),(' ',3,'hard'), (' ',4,'very easy'), (' ',5,'very hard'), (' ',6,'extreme hard');
+insert into indexOfPlays values (' ',1,'very easy'), (' ',2,'easy'),(' ',3,'moderate'), (' ',4,'bit difficult'), (' ',5,'difficult'), (' ',6,'very difficult');
 
 insert into plays values 
 (' ',1,0,3,5),(' ',1,0,5,3),(' ',1,0,6,7),
