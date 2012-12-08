@@ -5,7 +5,7 @@
 #include <QSqlDatabase>
 #include <QCloseEvent>
 #include <QTime>
-class SudokuForm ;
+class SudokuForm;
 
 namespace Ui {
 class MainWindow;

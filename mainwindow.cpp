@@ -47,14 +47,7 @@ QString sqlStrRecordsCreationQuery =
         "name TEXT(40) NOT NULL ,"
         "error_count INTEGER NOT NULL ,"
         "duration INTEGER NOT NULL  )";
-/*
-QString sqlStrInsertgrade1 = "INSERT INTO game_grades VALUES(1,'ΠΟΛΥ ΕΥΚΟΛΟ')";
-QString sqlStrInsertgrade2 = "INSERT INTO game_grades VALUES(2,'ΕΥΚΟΛΟ')";
-QString sqlStrInsertgrade3 ="INSERT INTO game_grades VALUES(3,'ΜΕΤΡΙΟ')";
-QString sqlStrInsertgrade4 ="INSERT INTO game_grades VALUES(4,'ΛΙΓΟ ΔΥΣΚΟΛΟ')";
-QString sqlStrInsertgrade5 ="INSERT INTO game_grades VALUES(5,'ΔΥΣΚΟΛΟ')";
-QString sqlStrInsertgrade6 ="INSERT INTO game_grades VALUES(6,'ΠΟΛΥ ΔΥΣΚΟΛΟ')";
-*/
+
 QString sqlStrInsertgrade1 = "INSERT INTO game_grades VALUES(1,'VERY EASY')";
 QString sqlStrInsertgrade2 = "INSERT INTO game_grades VALUES(2,'EASY')";
 QString sqlStrInsertgrade3 ="INSERT INTO game_grades VALUES(3,'MODERATE')";
@@ -67,7 +60,7 @@ QString sqlGetAllGames = "select * from games";
 QString sqlGetAllGamesInGrade = "select * from games where grade = %1";
 QString sqlInsertGameWiner  ="INSERT INTO records(game_id, name, error_count, duration) VALUES(%1, '%2', %3, %4 )";
 
-MainWindow::MainWindow(QWidget *parent) :
+MainWindow::MainWindow(QWidget *parent):
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
