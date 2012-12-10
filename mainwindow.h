@@ -5,7 +5,7 @@
 #include <QSqlDatabase>
 #include <QCloseEvent>
 #include <QTime>
-class SudokuForm;
+class SudokuForm ;
 
 namespace Ui {
 class MainWindow;
@@ -20,7 +20,7 @@ public:
     ~MainWindow();
 
     bool openSudokuDb();
-    bool createSudokuTablesQuery(QString sqlStr);
+    bool createQuery(QString sqlStr);
 
     bool createSudokuTables();
 
@@ -29,6 +29,9 @@ public:
     int randInt(int low, int high);
     int getGameCount(QSqlQuery query);
 
+    bool insertData();
+    bool createStructure();
+    bool executeSqlFromFile(QFile &theFile);
 protected:
     void closeEvent(QCloseEvent *event);
 

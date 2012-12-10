@@ -6,6 +6,8 @@
 #include <QDebug>
 #include <QMap>
 #include <QTime>
+#include <QTranslator>
+
 
 
 #include "mainwindow.h"
@@ -48,19 +50,12 @@ QString sqlStrRecordsCreationQuery =
         "error_count INTEGER NOT NULL ,"
         "duration INTEGER NOT NULL  )";
 
-QString sqlStrInsertgrade1 = "INSERT INTO game_grades VALUES(1,'VERY EASY')";
-QString sqlStrInsertgrade2 = "INSERT INTO game_grades VALUES(2,'EASY')";
-QString sqlStrInsertgrade3 ="INSERT INTO game_grades VALUES(3,'MODERATE')";
-QString sqlStrInsertgrade4 ="INSERT INTO game_grades VALUES(4,'BIT DIFFICULT')";
-QString sqlStrInsertgrade5 ="INSERT INTO game_grades VALUES(5,'DIFFICULT')";
-QString sqlStrInsertgrade6 ="INSERT INTO game_grades VALUES(6,'VERY DIFFICULT')";
-
 QString sqlGetGameCategories = "select * from game_grades";
 QString sqlGetAllGames = "select * from games";
 QString sqlGetAllGamesInGrade = "select * from games where grade = %1";
 QString sqlInsertGameWiner  ="INSERT INTO records(game_id, name, error_count, duration) VALUES(%1, '%2', %3, %4 )";
 
-MainWindow::MainWindow(QWidget *parent):
+MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
@@ -149,8 +144,8 @@ void MainWindow::newPlay()
     }
 
         bool ok;
-        QString item = QInputDialog::getItem(this, tr("New Play"),
-                                             tr("Dificulty Level:"), items, 0, false, &ok);
+        QString item = QInputDialog::getItem(this, tr("Νεο παιγνίδι"),
+                                             tr("Επίπεδο δυσκολίας:"), items, 0, false, &ok);
         if (ok && !item.isEmpty()){
             query.exec(QString(sqlGetAllGamesInGrade).arg(map[item]));
             int rowCount = getGameCount(query);
@@ -189,8 +184,8 @@ void MainWindow::savePlay()
     }
 
     bool ok;
-    QString item = QInputDialog::getItem(this, tr("Save Play"),
-                                         tr("Dificulty Level:"), items, 0, false, &ok);
+    QString item = QInputDialog::getItem(this, tr("Αποθήκευση Παιγνιδιού"),
+                                         tr("Επίπεδο δυσκολίας : "), items, 0, false, &ok);
     if (ok && !item.isEmpty()){
         mSudokuForm->savaGame(map[item]);
 
@@ -219,9 +214,9 @@ void MainWindow::closeEvent(QCloseEvent *event)
 bool MainWindow::maybeClose()
 {
     QMessageBox::StandardButton ret;
-    ret = QMessageBox::warning(this, tr("MpsManager"),
-          tr("Application Termination.\n"
-          "Do you really want to terminate?"),
+    ret = QMessageBox::warning(this, tr("Sudoku"),
+          tr("Τερματισμός εφαρμογής.\n"
+          "Σίγουρα θέλετε να τερματίσετε?"),
           QMessageBox::Ok | QMessageBox::Cancel);
     if (ret == QMessageBox::Ok)
        return true;
@@ -239,7 +234,7 @@ bool MainWindow::openSudokuDb()
     return ret;
 }
 
-bool MainWindow::createSudokuTablesQuery(QString sqlStr )
+bool MainWindow::createQuery(QString sqlStr )
 {
     bool ret ;
     QSqlQuery query;
@@ -248,27 +243,52 @@ bool MainWindow::createSudokuTablesQuery(QString sqlStr )
 }
 bool MainWindow::createSudokuTables()
 {
-    bool ret;
-    ret =createSudokuTablesQuery(QString(sqlStrGameGradesCreationQuery));
-    if (!ret)return ret;
-    ret =createSudokuTablesQuery(sqlStrGameCreationQuery);
-    if (!ret)return ret;
-    ret =createSudokuTablesQuery(sqlStrGameItemsCreationQuery);
-    if (!ret)return ret;
-    ret =createSudokuTablesQuery(sqlStrRecordsCreationQuery);
-    if (!ret)return ret;
-    ret =createSudokuTablesQuery(sqlStrInsertgrade1);
-    if (!ret)return ret;
-    ret =createSudokuTablesQuery(sqlStrInsertgrade2);
-    if (!ret)return ret;
-    ret =createSudokuTablesQuery(sqlStrInsertgrade3);
-    if (!ret)return ret;
-    ret =createSudokuTablesQuery(sqlStrInsertgrade4);
-    if (!ret)return ret;
-    ret =createSudokuTablesQuery(sqlStrInsertgrade5);
-    if (!ret)return ret;
-    ret =createSudokuTablesQuery(sqlStrInsertgrade6);
+
+    bool ret=true;
+
+    ret =createStructure();
+    if(ret){
+        insertData();
+    }
     return ret;
+}
+
+
+bool MainWindow::createStructure()
+{
+    bool ret;
+
+    QFile structure_file(":/data_structure.sql");
+    ret = executeSqlFromFile(structure_file );
+
+    return ret;
+}
+
+bool MainWindow::insertData()
+{
+    bool ret;
+
+    QFile data_file(":/data.sql");
+    ret = executeSqlFromFile(data_file);
+
+    return ret;
+}
+
+bool MainWindow::executeSqlFromFile(QFile &theFile )
+{
+    bool ret;
+
+    if(!theFile.open(QIODevice::ReadOnly| QIODevice::Text)){
+        return false;
+    }
+
+    while(!theFile.atEnd()){
+        QByteArray line =theFile.readLine();
+      //  QString
+       ret= createQuery(tr(line));
+    }
+    theFile.close();
+    return ret ;
 }
 
 void MainWindow::setCurrentGameId(int gameId)
