@@ -30,3 +30,10 @@ FORMS    += mainwindow.ui \
     numberselectiondialog.ui \
     aboutdialog.ui \
     recordsdialog.ui
+
+RESOURCES += \
+    resources.qrc
+
+OTHER_FILES += \
+    data.sql \
+    data_structure.sql
